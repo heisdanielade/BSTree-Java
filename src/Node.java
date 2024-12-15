@@ -2,7 +2,7 @@ public class Node {
     private int value;
     private Node left,right;
     private Node parent;
-    
+
     public int getValue() {
         return value;
     }

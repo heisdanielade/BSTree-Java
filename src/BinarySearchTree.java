@@ -70,7 +70,7 @@ public class BinarySearchTree {
         }
     }
 
-    // InOrder
+    // InOrder Traversal
     private void inOrder(Node root) {
         if (root != null) {
             inOrder(root.getLeft());
@@ -85,6 +85,26 @@ public class BinarySearchTree {
         else
             inOrder(root);
         System.out.println();
+    }
+
+    // Version 2: Print elements of BST using InOrder traversal in a list
+    private void inOrderValues(Node root, ArrayList<Integer> iv) {
+        if (root != null) {
+            inOrderValues(root.getLeft(), iv);
+            iv.add(root.getValue());
+            inOrderValues(root.getRight(), iv);
+        }
+    }
+
+    public ArrayList<Integer> inOrderValues() {
+        ArrayList<Integer> iv = new ArrayList<>();
+
+        if (size == 0)
+            return iv;
+        else
+            inOrderValues(root, iv);
+        return iv;
+
     }
 
 }

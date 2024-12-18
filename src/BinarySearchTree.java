@@ -37,19 +37,18 @@ public class BinarySearchTree {
         return true;
     }
 
-    public boolean insert(int x) {
+    public void insert(int x) {
         if (root == null) {
             // tree is empty
             root = new Node(x);
             size++;
-            return true;
         } else {
             // we know that pom is not null
             Node pom = root;
             Node pop = null;
             while (pom != null) {
                 if (pom.getValue() == x)
-                    return false;
+                    return;
                 pop = pom;
                 if (pom.getValue() < x) {
                     pom = pom.getRight();
@@ -65,7 +64,6 @@ public class BinarySearchTree {
             } else {
                 pop.setLeft(newNode);
             }
-            return true;
         }
     }
     // InOrder Traversal
@@ -124,6 +122,7 @@ public class BinarySearchTree {
         if (root == null){
             return -1;
         }
+        // get the subTree with the biggest height then + 1 ( length to root)
         int leftSubTreeHeight = calculateHeight(root.getLeft());
         int rightSubTreeHeight = calculateHeight(root.getRight());
         return Math.max(leftSubTreeHeight, rightSubTreeHeight) + 1;

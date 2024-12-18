@@ -17,10 +17,15 @@ public class Main {
         bst.insert(17);
         bst.insert(19);
 
-        // InOrder
+        // InOrder Traversal
         bst.inOrder();
-        ArrayList<Integer> bstValues = bst.inOrderValues();
-        System.out.println(System.lineSeparator() + "-> InOrder values: " + bstValues);
+        ArrayList<Integer> inBstValues = bst.inOrderValues();
+        System.out.println(System.lineSeparator() + "-> InOrder values: " + inBstValues);
+
+        // PreOrder Traversal
+        bst.preOrder();
+        ArrayList<Integer> preBstValues = bst.preOrder();
+        System.out.println("-> PreOrder values: " + preBstValues);
 
         // Height of BST
         System.out.printf("-> Height: %s", bst.getHeight());

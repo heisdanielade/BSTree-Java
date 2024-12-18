@@ -36,7 +36,6 @@ public class BinarySearchTree {
         }
         return true;
     }
-
     public void insert(int x) {
         if (root == null) {
             // tree is empty
@@ -91,11 +90,29 @@ public class BinarySearchTree {
     }
     public ArrayList<Integer> inOrderValues() {
         ArrayList<Integer> iv = new ArrayList<>();
-        if (size == 0)
+        if (size == 0) {
             return iv;
-        else
+        } else
             inOrderValues(root, iv);
         return iv;
+    }
+
+    // PreOrder Traversal
+    private void preOrder(Node root, ArrayList<Integer> pv) {
+        if (root != null) {
+            pv.add(root.getValue());
+            preOrder(root.getLeft(), pv);
+            preOrder(root.getRight(), pv);
+        }
+    }
+    public ArrayList<Integer> preOrder() {
+        ArrayList<Integer> pv = new ArrayList<>();
+        if(size == 0){
+            return pv;
+        } else {
+            preOrder(root, pv);
+        }
+        return pv;
     }
 
     // Search for an int x in the BST

@@ -100,6 +100,22 @@ public class BinarySearchTree {
         return iv;
     }
 
+    // Search for an int x in the BST
+    public boolean search(int x) {
+        if (root == null){
+            return false;
+        }
+        // Get the all elements of the BST in an ArrayList using Inorder
+        // then loop through ArrayList and come values with given int
+        ArrayList<Integer> iv = inOrderValues();
+        for (Integer i : iv) {
+            if (i == x) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Height of BST
     public int getHeight() {
         return calculateHeight(root);

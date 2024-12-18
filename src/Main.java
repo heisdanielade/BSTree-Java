@@ -20,12 +20,14 @@ public class Main {
         // InOrder
         bst.inOrder();
         ArrayList<Integer> bstValues = bst.inOrderValues();
-
-        System.out.print("\n-> InOrder values: ");
-        System.out.println(bstValues);
+        System.out.println(System.lineSeparator() + "-> InOrder values: " + bstValues);
 
         // Height of BST
-        System.out.printf("Height: %d", bst.getHeight());
+        System.out.printf("-> Height: %s", bst.getHeight());
+
+        // Search for an element in the BST
+        int x = 12;
+        System.out.printf(System.lineSeparator() + "-> Value %d in the BST: %s", x, bst.search(x));
 
     }
 }

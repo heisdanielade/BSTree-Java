@@ -26,8 +26,8 @@ public class Main {
         System.out.printf("-> Height: %s", bst.getHeight());
 
         // Search for an element in the BST
-        int x = 12;
-        System.out.printf(System.lineSeparator() + "-> Value %d in the BST: %s", x, bst.search(x));
+        int x = 17;
+        System.out.printf(System.lineSeparator() + "-> Search value %d in the BST: %s", x, bst.search(x));
 
     }
 }

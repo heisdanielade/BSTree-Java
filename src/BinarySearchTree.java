@@ -102,13 +102,16 @@ public class BinarySearchTree {
     public boolean search(int x) {
         if (root == null){
             return false;
-        }
-        // Get the all elements of the BST in an ArrayList using Inorder
-        // then loop through ArrayList and come values with given int
-        ArrayList<Integer> iv = inOrderValues();
-        for (Integer i : iv) {
-            if (i == x) {
-                return true;
+        } else {
+            Node current = root;
+            while (current != null) {
+                if (current.getValue() == x){
+                    return true;
+                } else if (current.getValue() < x){
+                    current = current.getRight();
+                } else {
+                    current = current.getLeft();
+                }
             }
         }
         return false;

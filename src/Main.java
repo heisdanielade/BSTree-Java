@@ -27,6 +27,11 @@ public class Main {
         ArrayList<Integer> preBstValues = bst.preOrder();
         System.out.println("-> PreOrder values: " + preBstValues);
 
+        // PostOrder Traversal
+        bst.preOrder();
+        ArrayList<Integer> postBstValues = bst.postOrder();
+        System.out.println("-> PreOrder values: " + postBstValues);
+
         // Height of BST
         System.out.printf("-> Height: %s", bst.getHeight());
 

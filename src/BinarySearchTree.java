@@ -3,6 +3,7 @@ public class BinarySearchTree {
     private Node root;
     private int size;
 
+    // version 2 of inserting value -- not used
     public boolean insertV2(int x) {
         if (root == null) { // tree is empty
             root = new Node(x);
@@ -36,6 +37,7 @@ public class BinarySearchTree {
         }
         return true;
     }
+
     public void insert(int x) {
         if (root == null) {
             // tree is empty
@@ -112,6 +114,23 @@ public class BinarySearchTree {
         } else {
             preOrder(root, pv);
         }
+        return pv;
+    }
+
+    // PostOrder Traversal
+    private void postOrder(Node root, ArrayList<Integer> pv) {
+        if (root != null) {
+            postOrder(root.getLeft(), pv);
+            postOrder(root.getRight(), pv);
+            pv.add(root.getValue());
+        }
+    }
+    public ArrayList<Integer> postOrder() {
+        ArrayList<Integer> pv = new ArrayList<>();
+        if(size == 0){
+            return pv;
+        }
+        postOrder(root, pv);
         return pv;
     }
 

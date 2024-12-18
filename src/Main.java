@@ -25,7 +25,7 @@ public class Main {
         System.out.println(bstValues);
 
         // Height of BST
-        System.out.println();
+        System.out.printf("Height: %d", bst.getHeight());
 
     }
 }

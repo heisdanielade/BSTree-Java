@@ -66,10 +66,8 @@ public class BinarySearchTree {
                 pop.setLeft(newNode);
             }
             return true;
-
         }
     }
-
     // InOrder Traversal
     private void inOrder(Node root) {
         if (root != null) {
@@ -78,7 +76,6 @@ public class BinarySearchTree {
             inOrder(root.getRight());
         }
     }
-
     public void inOrder() {
         if (size == 0)
             System.out.print("Empty tree");
@@ -86,7 +83,6 @@ public class BinarySearchTree {
             inOrder(root);
         System.out.println();
     }
-
     // Version 2: Print elements of BST using InOrder traversal in a list
     private void inOrderValues(Node root, ArrayList<Integer> iv) {
         if (root != null) {
@@ -95,16 +91,26 @@ public class BinarySearchTree {
             inOrderValues(root.getRight(), iv);
         }
     }
-
     public ArrayList<Integer> inOrderValues() {
         ArrayList<Integer> iv = new ArrayList<>();
-
         if (size == 0)
             return iv;
         else
             inOrderValues(root, iv);
         return iv;
+    }
 
+    // Height of BST
+    public int getHeight() {
+        return calculateHeight(root);
+    }
+    private int calculateHeight(Node root) {
+        if (root == null){
+            return -1;
+        }
+        int leftSubTreeHeight = calculateHeight(root.getLeft());
+        int rightSubTreeHeight = calculateHeight(root.getRight());
+        return Math.max(leftSubTreeHeight, rightSubTreeHeight) + 1;
     }
 
 }

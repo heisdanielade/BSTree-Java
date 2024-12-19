@@ -1,2 +1,0 @@
-TreeSort: 18200ns
-BubbleSort: 11300ns

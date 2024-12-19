@@ -167,4 +167,53 @@ public class BinarySearchTree {
         return Math.max(leftSubTreeHeight, rightSubTreeHeight) + 1;
     }
 
+    // Tree sort algorithm
+    public int[] treeSort() {
+        ArrayList<Integer> sortedList = inOrderValues();
+        // convert sorted Arraylist to an array
+        int[] sortedArray = new int[sortedList.size()];
+        for (int i = 0; i < sortedList.size(); i++) {
+            sortedArray[i] = sortedList.get(i);
+        }
+        return sortedArray;
+    }
+    private void treeSort(Node root, ArrayList<Integer> sorted) {
+        if (root == null){
+            return;
+        } else {
+            treeSort(root.getLeft(), sorted);
+            sorted.add(root.getValue());
+            treeSort(root.getRight(), sorted);
+        }
+    }
+
+    // Bubble sort algorithm
+    public ArrayList<Integer> getAllValues() {
+        ArrayList<Integer> values = new ArrayList<>();
+        collectValues(root, values);
+        return values;
+    }
+    private void collectValues(Node node, ArrayList<Integer> values) {
+        if (node == null) {
+            return;
+        }
+        values.add(node.getValue());
+        collectValues(node.getLeft(), values);
+        collectValues(node.getRight(), values);
+    }
+    public ArrayList<Integer> bubbleSort(){
+        ArrayList<Integer> values = getAllValues();
+
+        int n = values.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (values.get(j) > values.get(j + 1)) {
+                    int temp = values.get(j);
+                    values.set(j, values.get(j + 1));
+                    values.set(j + 1, temp);
+                }
+            }
+        }
+        return values; // sorted list
+    }
 }

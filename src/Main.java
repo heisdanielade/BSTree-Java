@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,9 +36,15 @@ public class Main {
         // Height of BST
         System.out.printf("-> Height: %s", bst.getHeight());
 
-        // Search for an element in the BST
+        // Search for x in the BST
         int x = 17;
         System.out.printf(System.lineSeparator() + "-> Search value %d in the BST: %s", x, bst.search(x));
+
+        // Tree sort Algorithms
+        int[] sortedArray = bst.treeSort();
+        System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + Arrays.toString(sortedArray));
+
+        
 
     }
 }

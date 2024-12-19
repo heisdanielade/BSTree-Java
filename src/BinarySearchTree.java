@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 public class BinarySearchTree {
     private Node root;
@@ -168,14 +171,8 @@ public class BinarySearchTree {
     }
 
     // Tree sort Algorithm
-    public int[] treeSort() {
-        ArrayList<Integer> sortedList = inOrderValues();
-        // convert sorted Arraylist to an array
-        int[] sortedArray = new int[sortedList.size()];
-        for (int i = 0; i < sortedList.size(); i++) {
-            sortedArray[i] = sortedList.get(i);
-        }
-        return sortedArray;
+    public ArrayList<Integer> treeSort() {
+        return inOrderValues();
     }
 
     // Bubble sort Algorithm
@@ -205,5 +202,33 @@ public class BinarySearchTree {
             }
         }
         return values; // sorted list
+    }
+
+    public void saveExecutionTime(){
+        // Get Execution time TreeSort & BubbleSort Algorithms
+        String fileName = "algorithm_times.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))){
+            // Measure TreeSort time
+            long tsStartTime = System.nanoTime();
+            ArrayList<Integer> treeSortedList = treeSort();
+            long tsEndTime = System.nanoTime();
+            long tsExecutionTime = tsEndTime - tsStartTime;
+            System.out.println(System.lineSeparator() + "TreeSort: " + tsExecutionTime + "ns" + System.lineSeparator());
+            writer.write("TreeSort: " + tsExecutionTime + "ns" + System.lineSeparator());
+
+            // Measure BubbleSort time
+            long bsStartTime = System.nanoTime();
+            ArrayList<Integer> bubbleSortedList = bubbleSort();
+            long bsEndTime = System.nanoTime();
+            long bsExecutionTime = bsEndTime - bsStartTime;
+            System.out.println("BubbleSort: " + bsExecutionTime + "ns" + System.lineSeparator());
+            writer.write("BubbleSort: " + bsExecutionTime + "ns" + System.lineSeparator());
+
+            // Success message
+            System.out.print("(i) Execution times saved to " + fileName + " successfully.");
+        } catch (IOException e){
+            System.out.println("(e) An error occurred.");
+            e.printStackTrace();
+        }
     }
 }

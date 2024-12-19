@@ -8,15 +8,10 @@ public class Main {
 
         BinarySearchTree bst = new BinarySearchTree();
 
-        bst.insert(10);
-        bst.insert(5);
-        bst.insert(15);
-        bst.insert(7);
-        bst.insert(12);
-        bst.insert(1);
-        bst.insert(8);
-        bst.insert(17);
-        bst.insert(19);
+        int[] elements = {10,5,15,7,12,1,8,17,19};
+        for (int e: elements) {
+            bst.insert(e);
+        }
 
         // InOrder Traversal
         bst.inOrder();
@@ -37,14 +32,18 @@ public class Main {
         System.out.printf("-> Height: %s", bst.getHeight());
 
         // Search for x in the BST
-        int x = 17;
-        System.out.printf(System.lineSeparator() + "-> Search value %d in the BST: %s", x, bst.search(x));
+        int x = 20;
+        System.out.printf(System.lineSeparator() + "-> Search (value %d exists): %s", x, bst.search(x));
 
         // Tree sort Algorithms
         int[] sortedArray = bst.treeSort();
         System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + Arrays.toString(sortedArray));
 
-        
+        // Bubble sort Algorithms
+        System.out.println("-> BubbleSort Algorithm: " + bst.bubbleSort());
+
+        // Get Execution time TreeSort & BubbleSort Algorithms
+
 
     }
 }

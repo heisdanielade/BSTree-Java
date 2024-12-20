@@ -171,7 +171,7 @@ public class BinarySearchTree {
     }
 
     // Tree sort Algorithm
-    public ArrayList<Integer> treeSort(int[] elements) {
+    public ArrayList<Integer> treeSort(ArrayList<Integer> elements) {
         for (int val: elements){
             insert(val);
         }
@@ -210,44 +210,38 @@ public class BinarySearchTree {
     }
 
     public void saveExecutionTime() {
-        File outputFile = new File("algorithm_execution_times.csv");
+        File treeFile = new File("treesort_time_data.csv");
+        File bubbleFile = new File("bubblesort_time_data.csv");
+        try (PrintWriter treeWriter = new PrintWriter(new FileWriter(treeFile));
+             PrintWriter bubbleWriter = new PrintWriter(new FileWriter(bubbleFile))) {
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
-            writer.println("ArraySize,TreeSortTime(ns),BubbleSortTime(ns)");
-
-            Random random = new Random();
-
-            for (int arraySize = 500; arraySize <= 10000; arraySize += 500) {
-                long totalTreeSortTime = 0;
-                long totalBubbleSortTime = 0;
-
-                for (int run = 0; run < 10; run++) {
-                    int[] array = new int[arraySize];
-                    for (int i = 0; i < arraySize; i++) {
-                        array[i] = random.nextInt(200) - 100;
+            Random r = new Random();
+            for (int i = 500; i <= 10000; i = i + 500) {
+                long timeTreeSort = 0;
+                long timeBubbleSort = 0;
+                for (int j = 0; j < 10; j++) {
+                    ArrayList<Integer> array = new ArrayList<>();
+                    for (int k = 0; k < i; k++) {
+                        array.add(r.nextInt(200) - 100);
                     }
-
-                    long startTime = System.nanoTime();
-                    treeSort(array.clone());
-                    long endTime = System.nanoTime();
-                    totalTreeSortTime += (endTime - startTime);
-
-                    startTime = System.nanoTime();
+                    long start = System.nanoTime();
+                    treeSort(array);
+                    long end = System.nanoTime();
+                    timeTreeSort += end - start;
+                    start = System.nanoTime();
                     bubbleSort();
-                    endTime = System.nanoTime();
-                    totalBubbleSortTime += (endTime - startTime);
+                    end = System.nanoTime();
+                    timeBubbleSort += end - start;
                 }
-
-                long averageTreeSortTime = totalTreeSortTime / 10;
-                long averageBubbleSortTime = totalBubbleSortTime / 10;
-
-                writer.println(arraySize + "," + averageTreeSortTime + "," + averageBubbleSortTime);
+                long result = timeTreeSort / 10;
+                treeWriter.println(Integer.toString(i) + "," + Long.toString(result));
+                result = timeBubbleSort / 10;
+                bubbleWriter.println(Integer.toString(i) + "," + Long.toString(result));
             }
-
-            System.out.println("Execution times saved to algorithm_execution_times.csv.");
-        } catch (IOException e) {
-            System.err.println("An error occurred while writing to the file: " + e.getMessage());
-            e.printStackTrace();
+            // Success message
+            System.out.println(System.lineSeparator() + "(s) Data saved to files successfully.");
+        } catch (IOException e){
+            System.out.println("(e) An error occurred: " + e.getMessage());
         }
-    }
+        }
 }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
 
-        System.out.println("--------Binary Search Tree-------");
+        System.out.println(System.lineSeparator() + "--------Binary Search Tree-------");
 
         BinarySearchTree bst = new BinarySearchTree();
 
@@ -14,7 +14,6 @@ public class Main {
 
         // InOrder Traversal
         System.out.println(System.lineSeparator() + "-> InOrder values: " + bst.inOrderValues());
-
         // PreOrder Traversal
         System.out.println("-> PreOrder values: " + bst.preOrder());
 
@@ -29,7 +28,7 @@ public class Main {
         System.out.printf(System.lineSeparator() + "-> Search (value %d exists): %s", x, bst.search(x));
 
         // Tree sort Algorithms
-        System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + bst.treeSort(elements));
+        System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + bst.treeSort(bst.preOrder()));
 
         // Bubble sort Algorithms
         System.out.println("-> BubbleSort Algorithm: " + bst.bubbleSort());

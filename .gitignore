@@ -31,5 +31,4 @@ bin/
 ### Additional ###
 bubblesort_time_data.csv
 treesort_time_data.csv
-chart_plot.py
 plot.png

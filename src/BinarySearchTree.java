@@ -1,7 +1,7 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
+
 public class BinarySearchTree {
     private Node root;
     private int size;
@@ -164,15 +164,20 @@ public class BinarySearchTree {
         if (root == null){
             return -1;
         }
-        // get the subTree with the biggest height then + 1 ( length to root)
+        // get the subtree with the biggest height then + 1 ( length to root)
         int leftSubTreeHeight = calculateHeight(root.getLeft());
         int rightSubTreeHeight = calculateHeight(root.getRight());
         return Math.max(leftSubTreeHeight, rightSubTreeHeight) + 1;
     }
 
     // Tree sort Algorithm
-    public ArrayList<Integer> treeSort() {
-        return inOrderValues();
+    public ArrayList<Integer> treeSort(int[] elements) {
+        for (int val: elements){
+            insert(val);
+        }
+        ArrayList<Integer> sorted = new ArrayList<>();
+        inOrderValues(root, sorted);
+        return sorted;
     }
 
     // Bubble sort Algorithm
@@ -204,30 +209,44 @@ public class BinarySearchTree {
         return values; // sorted list
     }
 
-    public void saveExecutionTime(){
-        // Get Execution time TreeSort & BubbleSort Algorithms
-        String fileName = "algorithm_times.txt";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))){
-            // Measure TreeSort time
-            long tsStartTime = System.nanoTime();
-            ArrayList<Integer> treeSortedList = treeSort();
-            long tsEndTime = System.nanoTime();
-            long tsExecutionTime = tsEndTime - tsStartTime;
-            System.out.println(System.lineSeparator() + "TreeSort: " + tsExecutionTime + "ns" + System.lineSeparator());
-            writer.write("TreeSort: " + tsExecutionTime + "ns" + System.lineSeparator());
+    public void saveExecutionTime() {
+        File outputFile = new File("algorithm_execution_times.csv");
 
-            // Measure BubbleSort time
-            long bsStartTime = System.nanoTime();
-            ArrayList<Integer> bubbleSortedList = bubbleSort();
-            long bsEndTime = System.nanoTime();
-            long bsExecutionTime = bsEndTime - bsStartTime;
-            System.out.println("BubbleSort: " + bsExecutionTime + "ns" + System.lineSeparator());
-            writer.write("BubbleSort: " + bsExecutionTime + "ns" + System.lineSeparator());
+        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
+            writer.println("ArraySize,TreeSortTime(ns),BubbleSortTime(ns)");
 
-            // Success message
-            System.out.print("(i) Execution times saved to " + fileName + " successfully.");
-        } catch (IOException e){
-            System.out.println("(e) An error occurred.");
+            Random random = new Random();
+
+            for (int arraySize = 500; arraySize <= 10000; arraySize += 500) {
+                long totalTreeSortTime = 0;
+                long totalBubbleSortTime = 0;
+
+                for (int run = 0; run < 10; run++) {
+                    int[] array = new int[arraySize];
+                    for (int i = 0; i < arraySize; i++) {
+                        array[i] = random.nextInt(200) - 100;
+                    }
+
+                    long startTime = System.nanoTime();
+                    treeSort(array.clone());
+                    long endTime = System.nanoTime();
+                    totalTreeSortTime += (endTime - startTime);
+
+                    startTime = System.nanoTime();
+                    bubbleSort();
+                    endTime = System.nanoTime();
+                    totalBubbleSortTime += (endTime - startTime);
+                }
+
+                long averageTreeSortTime = totalTreeSortTime / 10;
+                long averageBubbleSortTime = totalBubbleSortTime / 10;
+
+                writer.println(arraySize + "," + averageTreeSortTime + "," + averageBubbleSortTime);
+            }
+
+            System.out.println("Execution times saved to algorithm_execution_times.csv.");
+        } catch (IOException e) {
+            System.err.println("An error occurred while writing to the file: " + e.getMessage());
             e.printStackTrace();
         }
     }

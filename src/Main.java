@@ -13,19 +13,13 @@ public class Main {
         }
 
         // InOrder Traversal
-        bst.inOrder();
-        ArrayList<Integer> inBstValues = bst.inOrderValues();
-        System.out.println(System.lineSeparator() + "-> InOrder values: " + inBstValues);
+        System.out.println(System.lineSeparator() + "-> InOrder values: " + bst.inOrderValues());
 
         // PreOrder Traversal
-        bst.preOrder();
-        ArrayList<Integer> preBstValues = bst.preOrder();
-        System.out.println("-> PreOrder values: " + preBstValues);
+        System.out.println("-> PreOrder values: " + bst.preOrder());
 
         // PostOrder Traversal
-        bst.preOrder();
-        ArrayList<Integer> postBstValues = bst.postOrder();
-        System.out.println("-> PreOrder values: " + postBstValues);
+        System.out.println("-> PostOrder values: " + bst.postOrder());
 
         // Height of BST
         System.out.printf("-> Height: %s", bst.getHeight());
@@ -35,12 +29,12 @@ public class Main {
         System.out.printf(System.lineSeparator() + "-> Search (value %d exists): %s", x, bst.search(x));
 
         // Tree sort Algorithms
-        System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + bst.treeSort());
+        System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + bst.treeSort(elements));
 
         // Bubble sort Algorithms
         System.out.println("-> BubbleSort Algorithm: " + bst.bubbleSort());
 
-        // Save Execution time of Algorithms to txt file
+        // Save Execution time of Algorithms to csv files
         bst.saveExecutionTime();
 
     }

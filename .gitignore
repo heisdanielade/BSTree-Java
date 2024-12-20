@@ -29,4 +29,6 @@ bin/
 .DS_Store
 
 ### Additional ###
-algorithm_times.txt
+bubblesort_time_data.csv
+treesort_time_data.csv
+algorithm_execution_times.csv

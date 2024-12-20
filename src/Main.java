@@ -14,6 +14,7 @@ public class Main {
 
         // InOrder Traversal
         System.out.println(System.lineSeparator() + "-> InOrder values: " + bst.inOrderValues());
+
         // PreOrder Traversal
         System.out.println("-> PreOrder values: " + bst.preOrder());
 

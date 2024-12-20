@@ -209,6 +209,7 @@ public class BinarySearchTree {
         return values; // sorted list
     }
 
+    // Save execution time of algorithms to csv file
     public void saveExecutionTime() {
         File treeFile = new File("treesort_time_data.csv");
         File bubbleFile = new File("bubblesort_time_data.csv");

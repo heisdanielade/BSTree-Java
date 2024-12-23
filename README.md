@@ -24,6 +24,7 @@
 1. Make sure you have python and the required libraries (listed above) installed
 2. Run the python script **plot_chart.py** to visualize the execution times, a sample graph is pictured below:
 
-<img height="350" src="plot.png" width="500"/>
+![Chart](./plot.png)
+
 
 Feel free to contribute, report issues, or suggest enhancements on GitHub to improve this project.

@@ -24,7 +24,7 @@
 1. Make sure you have python and the required libraries (listed above) installed
 2. Run the python script **plot_chart.py** to visualize the execution times, a sample graph is pictured below:
 
-![Chart](./plot.png)
+![Chart](./charts/Both-Algorithms.png)
 
 
 Feel free to contribute, report issues, or suggest enhancements on GitHub to improve this project.

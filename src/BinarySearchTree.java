@@ -181,21 +181,7 @@ public class BinarySearchTree {
     }
 
     // Bubble sort Algorithm
-    public ArrayList<Integer> getAllValues() {
-        ArrayList<Integer> values = new ArrayList<>();
-        collectValues(root, values);
-        return values;
-    }
-    private void collectValues(Node root, ArrayList<Integer> values) {
-        if (root != null) {
-            values.add(root.getValue());
-            collectValues(root.getLeft(), values);
-            collectValues(root.getRight(), values);
-        }
-    }
-    public ArrayList<Integer> bubbleSort(){
-        ArrayList<Integer> values = getAllValues();
-
+    public ArrayList<Integer> bubbleSort(ArrayList<Integer> values){
         int n = values.size();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -217,20 +203,20 @@ public class BinarySearchTree {
              PrintWriter bubbleWriter = new PrintWriter(new FileWriter(bubbleFile))) {
 
             Random r = new Random();
-            for (int i = 500; i <= 10000; i = i + 500) {
+            for (int i = 500; i <= 10000; i = i + 200) {
                 long timeTreeSort = 0;
                 long timeBubbleSort = 0;
                 for (int j = 0; j < 10; j++) {
                     ArrayList<Integer> array = new ArrayList<>();
                     for (int k = 0; k < i; k++) {
-                        array.add(r.nextInt(200) - 100);
+                        array.add(r.nextInt(200));
                     }
                     long start = System.nanoTime();
                     treeSort(array);
                     long end = System.nanoTime();
                     timeTreeSort += end - start;
                     start = System.nanoTime();
-                    bubbleSort();
+                    bubbleSort(array);
                     end = System.nanoTime();
                     timeBubbleSort += end - start;
                 }

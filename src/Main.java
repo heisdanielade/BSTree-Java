@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args){
@@ -32,7 +34,8 @@ public class Main {
         System.out.println(System.lineSeparator() + "-> TreeSort Algorithm: " + bst.treeSort(bst.preOrder()));
 
         // Bubble sort Algorithms
-        System.out.println("-> BubbleSort Algorithm: " + bst.bubbleSort());
+        ArrayList<Integer> elementsList = new ArrayList<>(Arrays.stream(elements).boxed().toList());
+        System.out.println("-> BubbleSort Algorithm: " + bst.bubbleSort(elementsList));
 
         // Save Execution time of Algorithms to csv files
         bst.saveExecutionTime();

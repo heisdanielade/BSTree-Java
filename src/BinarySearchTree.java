@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class BinarySearchTree {
     private Node root;
@@ -201,34 +200,37 @@ public class BinarySearchTree {
         File bubbleFile = new File("bubblesort_time_data.csv");
         try (PrintWriter treeWriter = new PrintWriter(new FileWriter(treeFile));
              PrintWriter bubbleWriter = new PrintWriter(new FileWriter(bubbleFile))) {
-
-            Random r = new Random();
-            for (int i = 500; i <= 10000; i = i + 200) {
+            for (int i = 200; i <= 10000; i += 200) {
                 long timeTreeSort = 0;
                 long timeBubbleSort = 0;
                 for (int j = 0; j < 10; j++) {
+                    // Generate a unique list of integers
                     ArrayList<Integer> array = new ArrayList<>();
                     for (int k = 0; k < i; k++) {
-                        array.add(r.nextInt(200));
+                        array.add(k);
                     }
+                    Collections.shuffle(array);
+                    array = new ArrayList<>(array.subList(0, i));
+                    // Measure tree sort execution time
                     long start = System.nanoTime();
                     treeSort(array);
                     long end = System.nanoTime();
                     timeTreeSort += end - start;
+                    // Measure bubble sort execution time
                     start = System.nanoTime();
                     bubbleSort(array);
                     end = System.nanoTime();
                     timeBubbleSort += end - start;
                 }
-                long result = timeTreeSort / 10;
-                treeWriter.println(Integer.toString(i) + "," + Long.toString(result));
-                result = timeBubbleSort / 10;
-                bubbleWriter.println(Integer.toString(i) + "," + Long.toString(result));
+                long avgTreeSortTime = timeTreeSort / 10;
+                treeWriter.println(i + "," + avgTreeSortTime);
+
+                long avgBubbleSortTime = timeBubbleSort / 10;
+                bubbleWriter.println(i + "," + avgBubbleSortTime);
             }
-            // Success message
-            System.out.println(System.lineSeparator() + "(s) Data saved to files successfully.");
-        } catch (IOException e){
+            System.out.println("\n(s) Data saved to files successfully.");
+        } catch (IOException e) {
             System.out.println("(e) An error occurred: " + e.getMessage());
         }
-        }
+    }
 }
